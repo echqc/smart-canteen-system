@@ -11,3 +11,8 @@ sky:
     access-key-id: LTAI5t9Koe3Ra44nHSvXuDrJ
     access-key-secret: DdqYz3pvKXZGC4VbSqNuDw2v1yo0OR
     bucket-name: java-ai-qc
+  redis:
+    host: localhost
+    port: 6379
+    password: 1234
+    database: 10
