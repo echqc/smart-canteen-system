@@ -1,6 +1,8 @@
 package com.sky.controller.admin;
 
+import com.sky.dto.ShoppingCartDTO;
 import com.sky.result.Result;
+import com.sky.service.ShoppingCartService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +18,9 @@ public class ShopController {
     public static final String KEY="shop_status";
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private ShoppingCartService shoppingCartService;
+
     @ApiOperation("设置店铺状态")
     @PutMapping("/{status}")
     public Result setStatus(@PathVariable Integer status){
