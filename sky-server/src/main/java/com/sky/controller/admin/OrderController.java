@@ -22,13 +22,6 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
     @Autowired
     private OrderService orderService;
-
-    /**
-     * 订单搜索
-     *
-     * @param ordersPageQueryDTO
-     * @return
-     */
     @GetMapping("/conditionSearch")
     @ApiOperation("订单搜索")
     public Result<PageResult> conditionSearch(OrdersPageQueryDTO ordersPageQueryDTO) {
