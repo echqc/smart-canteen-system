@@ -3,6 +3,7 @@ package com.sky.service.impl;
 import com.sky.dto.GoodsSalesDTO;
 import com.sky.entity.Orders;
 import com.sky.mapper.OrderMapper;
+import com.sky.mapper.UserMapper;
 import com.sky.service.ReportService;
 import com.sky.vo.OrderReportVO;
 import com.sky.vo.SalesTop10ReportVO;
@@ -25,6 +26,9 @@ import java.util.stream.Collectors;
 public class ReportServiceImpl implements ReportService {
     @Autowired
     private OrderMapper orderMapper;
+    @Autowired
+    private UserMapper userMapper;
+
     /**
      * 营业额数据统计
      * @param begin
@@ -74,9 +78,9 @@ public class ReportServiceImpl implements ReportService {
             LocalDateTime endTime = LocalDateTime.of(date, LocalTime.MAX);
             Map map=new HashMap<>();
             map.put("end",endTime);
-            Integer totalUser=orderMapper.countByMap(map);
+            Integer totalUser=userMapper.countByMap(map);
             map.put("begin",beginTime);
-            Integer newUser=orderMapper.countByMap(map);
+            Integer newUser=userMapper.countByMap(map);
             newUserList.add(newUser);
             totalUserList.add(totalUser);
         }
@@ -107,9 +111,9 @@ public class ReportServiceImpl implements ReportService {
             Map map=new HashMap<>();
             map.put("begin",beginTime);
             map.put("end",endTime);
-            Integer orderCount=orderMapper.countOByMap(map);
+            Integer orderCount=orderMapper.countByMap(map);
             map.put("status", Orders.COMPLETED);
-            Integer validOrderCount=orderMapper.countOByMap(map);
+            Integer validOrderCount=orderMapper.countByMap(map);
             orderCountList.add(orderCount);
             validOrderCountList.add(validOrderCount);
         }
